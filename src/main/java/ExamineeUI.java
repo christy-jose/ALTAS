@@ -35,7 +35,7 @@ public class ExamineeUI extends javax.swing.JFrame {
 //<<<<<<< Updated upstream
     public ExamineeUI(String name) {
 //=======
-//    public ExamineeUI(HomeWindow p) {
+   //public ExamineeUI(HomeWindow p) {
 //>>>>>>> Stashed changes
         initComponents();
         user = new Examinee();
@@ -897,13 +897,17 @@ public class ExamineeUI extends javax.swing.JFrame {
         //LoadingPanel Lp = new  LoadingPanel();
         //System.out.println("Adding LP");
         //finishedtestpanel.add(Lp);
-        SwingUtilities.invokeLater( 
-                      new Runnable(){
-                       public void run(){
+        SwingUtilities.invokeAndWait( 
+            new Runnable(){
+                try {   
+                    public void run(){
                         ftloading.setText("Connecting to Database....");
-                      }
-                     }
-                    );  
+                    }
+                }
+                catch (Exception e) {
+                        
+                }
+            });  
         //ftloading.setText("Connecting to Database....");
         ///*
         ConnectDB DB = new ConnectDB();
