@@ -62,7 +62,20 @@ public class SearchModule {
         Test temp;
         try {
             String query = "select * from test where starttime > CURRENT_TIMESTAMP;";
-            //System.out.println(query);
+            System.out.println(query);
+            prestmt = conn.prepareStatement(query);
+            res = prestmt.executeQuery();
+            while(res.next()){
+                temp = new Test();
+                temp.Testid = res.getLong(1);
+                temp.Starttime = res.getTimestamp(2);
+                temp.Endtime = res.getTimestamp(3);
+                temp.Testname = res.getString(4);
+//                temp.status = res.getInt(5);
+                A.add(temp);
+            }
+            query = "select * from test where starttime < CURRENT_TIMESTAMP and endtime > CURRENT_TIMESTAMP;";
+            System.out.println(query);
             prestmt = conn.prepareStatement(query);
             res = prestmt.executeQuery();
             while(res.next()){
@@ -112,7 +125,7 @@ public class SearchModule {
         ArrayList<Test> A = new ArrayList<Test>();
         Test temp;
         try {
-            String query = "select * from test where starttime < CURRENT_TIMESTAMP;";
+            String query = "select * from test where endtime < CURRENT_TIMESTAMP;";
             //System.out.println(query);
             prestmt = conn.prepareStatement(query);
             res = prestmt.executeQuery();

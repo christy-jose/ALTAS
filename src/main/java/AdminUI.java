@@ -211,6 +211,7 @@ public class AdminUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Requests", jPanel2);
+        jTabbedPane1.setEnabledAt(1, false);
 
         jPanel3.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -232,6 +233,7 @@ public class AdminUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Registered Examiners", jPanel3);
+        jTabbedPane1.setEnabledAt(2,false);
 
         jButton5.setText("DB Config");
         jButton5.addActionListener(new java.awt.event.ActionListener() {

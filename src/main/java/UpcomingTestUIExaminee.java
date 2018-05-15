@@ -211,32 +211,35 @@ public class UpcomingTestUIExaminee extends javax.swing.JPanel {
             }
         }
         catch (MalformedURLException urle) {
-            JOptionPane.showMessageDialog(tabpanel, "Cannot find judge server");
+            JOptionPane.showMessageDialog(null, "Cannot find judge server");
             return;
         }
         catch (IOException ioe) {
-            JOptionPane.showMessageDialog(tabpanel, "Error");
+            JOptionPane.showMessageDialog(null, "Error");
             return;
         }
+        System.out.println("Parsing server time");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date temp = null;
         try {
             temp = sdf.parse(response.toString());
         }
         catch (ParseException pe) {
-            JOptionPane.showMessageDialog(tabpanel, "Time error");
+            JOptionPane.showMessageDialog(null, "Time error");
             return;
         }
+        System.out.println("Making server time timestamp");
         Timestamp servertime = new Timestamp(temp.getTime());
+        System.out.println("Done");
         if(servertime.before(test.Starttime)) {
-            JOptionPane.showMessageDialog(tabpanel, "Test has not started yet");
+            JOptionPane.showMessageDialog(null, "Test has not started yet");
             return;
         }
         if(servertime.after(test.Endtime)) {
-            JOptionPane.showMessageDialog(tabpanel, "Test is over");
+            JOptionPane.showMessageDialog(null, "Test is over");
             return;
         }
-        //String s = C.start();
+        String s = C.start();
         jButton1.setEnabled(false);
         jButton3.setEnabled(true);
         tabpanel.setEnabledAt(3, true);
@@ -251,7 +254,7 @@ public class UpcomingTestUIExaminee extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         Configurator C = new Configurator();
-        //String s = C.end();
+        String s = C.end();
         jButton3.setEnabled(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 

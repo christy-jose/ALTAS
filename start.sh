@@ -1,5 +1,5 @@
 #!/bin/bash
 echo "In start"
-sudo -S /home/nandu6177/Desktop/ALTAS/snet.sh
-sudo -S /home/nandu6177/Desktop/ALTAS/sloc.sh
+sudo -S /home/christy/Documents/College/SE/ALTAS/snet.sh
+sudo -S /home/christy/Documents/College/SE/ALTAS/sloc.sh
 echo "Done start" 

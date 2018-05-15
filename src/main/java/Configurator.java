@@ -12,7 +12,8 @@ import java.io.*;
 public class Configurator {
     public String start() {
         try {
-            Process p = Runtime.getRuntime().exec("/home/christy/NetBeansProjects/ALTAS/start.sh");
+            System.out.println("Configuring Environment");
+            Process p = Runtime.getRuntime().exec("./start.sh");
             //System.out.println("Successful");
             p.waitFor();
             ///*
@@ -21,8 +22,9 @@ public class Configurator {
             String line = "";			
             while ((line = reader.readLine())!= null) {
                 sb.append(line + "\n");
-                System.out.println(sb.toString());
+                
             }
+            System.out.println(sb.toString());
            //*/
         }
         catch( Exception e) {
@@ -33,7 +35,8 @@ public class Configurator {
     }
     public String end() {
         try {
-            Process p = Runtime.getRuntime().exec("/home/christy/NetBeansProjects/ALTAS/end.sh");
+            System.out.println("Restoring Environment");
+            Process p = Runtime.getRuntime().exec("./end.sh");
             //System.out.println("Successful");
             p.waitFor();
             ///*
@@ -42,8 +45,9 @@ public class Configurator {
             String line = "";			
             while ((line = reader.readLine())!= null) {
                 sb.append(line + "\n");
-                System.out.println(sb.toString());
+                
             }
+            System.out.println(sb.toString());
             //*/
         }
         catch( Exception e) {

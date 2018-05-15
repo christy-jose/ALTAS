@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "In snet"
 iptables -F
-iptables-restore < /home/nandu6177/Desktop/ALTAS/firewallConfig.rules
+iptables-restore < /home/christy/Documents/College/SE/ALTAS/firewallConfig.rules
 echo "Done snet"
 

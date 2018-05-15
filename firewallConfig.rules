@@ -10,6 +10,8 @@
 -A OUTPUT -d elmer.db.elephantsql.com -j ACCEPT
 -A INPUT -s ds255889.mlab.com -j ACCEPT
 -A OUTPUT -d ds255889.mlab.com -j ACCEPT
+-A INPUT -s localhost -j ACCEPT
+-A OUTPUT -d localhost -j ACCEPT
 -A INPUT -s amrita.edu -j ACCEPT
 -A OUTPUT -d amrita.edu -j ACCEPT
 COMMIT

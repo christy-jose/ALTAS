@@ -300,6 +300,8 @@ public class HomeWindow extends javax.swing.JFrame {
             return;
         }
         //System.out.println("I am being executed idk why!");
+        SUsernameField.setText("");
+        SPasswordField.setText("");
         this.setVisible(false);
         new ExamineeUI(this,usr).setVisible(true);
     }//GEN-LAST:event_SloginActionPerformed
@@ -332,6 +334,8 @@ public class HomeWindow extends javax.swing.JFrame {
             return;
         }
         //System.out.println("I am being executed idk why!");
+        FUsernameField.setText("");
+        FPasswordField.setText("");
         this.setVisible(false);
         new ExaminerUI(usr,this).setVisible(true);
     }//GEN-LAST:event_FLoginActionPerformed
@@ -359,6 +363,8 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void AClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AClearActionPerformed
         // TODO add your handling code here:
+        AUsernameField.setText("");
+        APasswordField.setText("");
     }//GEN-LAST:event_AClearActionPerformed
 
     private void AloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AloginActionPerformed
@@ -367,6 +373,8 @@ public class HomeWindow extends javax.swing.JFrame {
         String pwd=APasswordField.getText();
         if("Admin".equals(usr) && "admin123".equals(pwd))
         {
+            AUsernameField.setText("");
+            APasswordField.setText("");
             this.setVisible(false);
             new AdminUI(this).setVisible(true);
         }
