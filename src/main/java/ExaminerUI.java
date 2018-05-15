@@ -28,15 +28,18 @@ public class ExaminerUI extends javax.swing.JFrame {
      */
     private String Uname;
     private Component frame;
-    private String TestID;
+    private long TestID,testID;
 //    FacultyHomePage facultyHomePage;
-    public ExaminerUI(String username,HomeWindow prev) {
+    public ExaminerUI(String username) {
         Uname = username;
-        TestID = Long.toString(System.nanoTime());
-        pre = prev;
+        TestID = System.nanoTime();
         initComponents();
+        jPanel4.setEnabled(false);
     }
-
+    
+    public void setTestID(long testid){
+        testID=testid;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +74,11 @@ public class ExaminerUI extends javax.swing.JFrame {
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6,javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2 = new javax.swing.JScrollPane(jPanel6);
         jPanel4 = new javax.swing.JPanel();
+        subpanel = new javax.swing.JPanel();
+        subpanel.setLayout(new javax.swing.BoxLayout(subpanel,javax.swing.BoxLayout.Y_AXIS));
+        submissionspane = new javax.swing.JScrollPane(subpanel);
+        jLabel10 = new javax.swing.JLabel();
+        Testname = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -242,18 +250,42 @@ public class ExaminerUI extends javax.swing.JFrame {
 
         jTabbedPane6.addTab("Previous Tests", jPanel3);
 
+        jPanel4.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel4ComponentShown(evt);
+            }
+        });
+
+        jLabel10.setText("Test Name :");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 792, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(submissionspane)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Testname, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(Testname, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submissionspane, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane6.addTab("Settings", jPanel4);
+        jTabbedPane6.addTab("Submissions", jPanel4);
+        jTabbedPane6.setEnabledAt(3, false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,7 +369,7 @@ public class ExaminerUI extends javax.swing.JFrame {
         
         atm.AddToTest(data);
         this.setVisible(false);
-        new AddQuestion(this,TestID).setVisible(true);
+        new AddQuestion(this,Long.toString(TestID)).setVisible(true);
     }//GEN-LAST:event_createTestActionPerformed
 
     private void DisplayTest(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_DisplayTest
@@ -407,7 +439,7 @@ public class ExaminerUI extends javax.swing.JFrame {
         SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormater = new SimpleDateFormat("hh:mm:ss a");
         for(int i=0;i<E.size();i++) {
-            U = new PreviousTestUIExaminer();
+            U = new PreviousTestUIExaminer(this);
             U.set1(E.get(i).Testname);
             U.set2(String.valueOf(E.get(i).Testid));
             jPanel6.add(U);
@@ -415,11 +447,51 @@ public class ExaminerUI extends javax.swing.JFrame {
         retStat = DB.disconnect();
     }//GEN-LAST:event_DisplayPreviousTest
 
+    private void DisplaySubmissions()
+    {
+        jTabbedPane6.setEnabledAt(3, true);
+        int retStat;
+        ArrayList<Submission> E;
+        subpanel.removeAll();
+        
+        ConnectDB DB = new ConnectDB();
+        retStat = DB.connect();
+        if(retStat == 1) {
+            javax.swing.JOptionPane.showMessageDialog(this,"Couldn't connect to DB");
+            return;
+        }
+        else if(retStat == 2) {
+            javax.swing.JOptionPane.showMessageDialog(this,"No JDBC driver");
+            return;
+        }
+        SearchModule SER = new SearchModule();
+        SER.setconn(DB.getconn());
+        E = SER.fetchSubmissions(testID);
+        if(E.size()==0) {
+            retStat = DB.disconnect();
+            javax.swing.JOptionPane.showMessageDialog(this,"No submissions to show");
+            return;
+        }
+        SubmissionUI U; 
+        for(int i=0;i<E.size();i++) {
+            U = new SubmissionUI(E.get(i));
+            subpanel.add(U);
+        }
+        retStat = DB.disconnect();
+        jTabbedPane6.setSelectedIndex(3);
+    }
+    public void viewSub(){
+        DisplaySubmissions();
+    }
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        closeWindow();
-        
+        this.dispose();
+        new HomeWindow().setVisible(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel4ComponentShown
 
     /**
      * @param args the command line arguments
@@ -436,9 +508,11 @@ public class ExaminerUI extends javax.swing.JFrame {
     private javax.swing.JTextField DurationHourField;
     private javax.swing.JTextField DurationMinField;
     private javax.swing.JTextField TestNameField;
+    private javax.swing.JLabel Testname;
     private javax.swing.JButton createTest;
     private javax.swing.JTextField day;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -455,6 +529,8 @@ public class ExaminerUI extends javax.swing.JFrame {
     private javax.swing.JTextField shour;
     private javax.swing.JTextField sminute;
     private javax.swing.JTextField ssecond;
+    private javax.swing.JPanel subpanel;
+    private javax.swing.JScrollPane submissionspane;
     private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
     private HomeWindow pre;

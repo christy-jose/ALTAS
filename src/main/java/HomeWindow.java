@@ -198,6 +198,8 @@ public class HomeWindow extends javax.swing.JFrame {
 
         jLabel5.setText("Username");
 
+        AUsernameField.setEditable(false);
+
         jLabel6.setText("Password");
 
         AClear.setText("Clear");
@@ -300,10 +302,8 @@ public class HomeWindow extends javax.swing.JFrame {
             return;
         }
         //System.out.println("I am being executed idk why!");
-        SUsernameField.setText("");
-        SPasswordField.setText("");
-        this.setVisible(false);
-        new ExamineeUI(this,usr).setVisible(true);
+        this.dispose();
+        new ExamineeUI(usr).setVisible(true);
     }//GEN-LAST:event_SloginActionPerformed
 
     private void FLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FLoginActionPerformed
@@ -334,10 +334,8 @@ public class HomeWindow extends javax.swing.JFrame {
             return;
         }
         //System.out.println("I am being executed idk why!");
-        FUsernameField.setText("");
-        FPasswordField.setText("");
-        this.setVisible(false);
-        new ExaminerUI(usr,this).setVisible(true);
+        this.dispose();
+        new ExaminerUI(usr).setVisible(true);
     }//GEN-LAST:event_FLoginActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
@@ -373,10 +371,8 @@ public class HomeWindow extends javax.swing.JFrame {
         String pwd=APasswordField.getText();
         if("Admin".equals(usr) && "admin123".equals(pwd))
         {
-            AUsernameField.setText("");
-            APasswordField.setText("");
-            this.setVisible(false);
-            new AdminUI(this).setVisible(true);
+            this.dispose();
+            new AdminUI().setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(this, "Incorrect Username/Password");
