@@ -901,8 +901,8 @@ public class ExamineeUI extends javax.swing.JFrame {
                       new Runnable(){
                        public void run(){
                         ftloading.setText("Connecting to Database....");
-                       }
                       }
+                     }
                     );  
         //ftloading.setText("Connecting to Database....");
         ///*

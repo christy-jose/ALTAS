@@ -55,7 +55,6 @@ public class PreviousTestUIExaminer extends javax.swing.JPanel {
         jLabel2.setText("Test ID :");
 
         jButton1.setText("View Submissions");
-        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
