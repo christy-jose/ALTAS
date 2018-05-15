@@ -114,9 +114,11 @@ public class QuestionUI extends javax.swing.JPanel {
          int ret;
          try {
              file = jfc.getSelectedFile();
-             getFileFromDB gff = new getFileFromDB();
-             ret = gff.getFile(file.getAbsolutePath(), Q.id);
-             JOptionPane.showMessageDialog(this, "File saved");
+             if(file!=null) {
+                getFileFromDB gff = new getFileFromDB();
+                ret = gff.getFile(file.getAbsolutePath(), Q.id);
+                JOptionPane.showMessageDialog(this, "File saved");
+             }   
          }
          catch (Exception e) {
              JOptionPane.showMessageDialog(null, "Error");

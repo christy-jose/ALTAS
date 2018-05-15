@@ -74,7 +74,59 @@ public class SearchModule {
 //                temp.status = res.getInt(5);
                 A.add(temp);
             }
+            /*
             query = "select * from test where starttime < CURRENT_TIMESTAMP and endtime > CURRENT_TIMESTAMP;";
+            System.out.println(query);
+            prestmt = conn.prepareStatement(query);
+            res = prestmt.executeQuery();
+            while(res.next()){
+                temp = new Test();
+                temp.Testid = res.getLong(1);
+                temp.Starttime = res.getTimestamp(2);
+                temp.Endtime = res.getTimestamp(3);
+                temp.Testname = res.getString(4);
+//                temp.status = res.getInt(5);
+                A.add(temp);
+            }
+            //*/
+            // conn.commit();
+            //print(res);
+            System.out.println("Statement excetued Successfully");
+            
+        } catch (SQLException sqle){
+            System.out.println("Statement not excetued");
+            /*
+            try {
+                conn.rollback();
+                System.out.println("Rollback successful");
+                 
+            } catch (SQLException sqle1){
+                System.out.println("Error");
+                System.out.println(sqle1.getMessage());
+            }
+            */
+            System.out.println(sqle.getMessage());
+            
+        } finally {
+            try {
+                //conn.setAutoCommit(true);
+                if(prestmt!=null)
+                    prestmt.close();
+            } catch (SQLException sqle){
+                System.out.println("Error");
+                System.out.println(sqle.getMessage());
+            }
+        }
+        return A;
+    }
+    ArrayList<Test> OngoingTestDetails() {
+        // returns a list of all upcomming tests
+        PreparedStatement prestmt = null;
+        ResultSet res = null;
+        ArrayList<Test> A = new ArrayList<Test>();
+        Test temp;
+        try {
+            String query = "select * from test where starttime < CURRENT_TIMESTAMP and endtime > CURRENT_TIMESTAMP;";
             System.out.println(query);
             prestmt = conn.prepareStatement(query);
             res = prestmt.executeQuery();

@@ -25,6 +25,7 @@ import java.util.*;
 import java.text.SimpleDateFormat; 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
 public class ExamineeUI extends javax.swing.JFrame {
 
@@ -79,6 +80,7 @@ public class ExamineeUI extends javax.swing.JFrame {
         changepassword = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
+        ftloading = new javax.swing.JLabel();
         finishedtestpanel = new javax.swing.JPanel();
         finishedtestpanel.setLayout(new javax.swing.BoxLayout(finishedtestpanel,javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2 = new javax.swing.JScrollPane(finishedtestpanel);
@@ -233,7 +235,7 @@ public class ExamineeUI extends javax.swing.JFrame {
             .addGroup(ProfilePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(changepassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(506, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
             .addGroup(ProfilePanelLayout.createSequentialGroup()
                 .addGroup(ProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProfilePanelLayout.createSequentialGroup()
@@ -247,7 +249,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                                 .addGroup(ProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                                 .addGroup(ProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
@@ -297,21 +299,34 @@ public class ExamineeUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Profile", ProfilePanel);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jPanel2ComponentShown(evt);
             }
         });
 
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                    .addComponent(ftloading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftloading, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(4, 4, 4))
         );
 
         jTabbedPane1.addTab("Finished Tests", jPanel2);
@@ -340,7 +355,8 @@ public class ExamineeUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Upcoming Test", jPanel3);
@@ -407,7 +423,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                         .addGroup(TestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(TestPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 114, Short.MAX_VALUE))
+                                .addGap(28, 90, Short.MAX_VALUE))
                             .addGroup(TestPanelLayout.createSequentialGroup()
                                 .addComponent(questionbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
@@ -439,7 +455,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(testname, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(QuestionsPane, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .addComponent(QuestionsPane, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(TestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -480,7 +496,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                     .addGroup(submissionpanelLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Testname, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)))
+                        .addComponent(Testname, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         submissionpanelLayout.setVerticalGroup(
@@ -491,7 +507,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(Testname, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submissionspane, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                .addComponent(submissionspane, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -502,7 +518,10 @@ public class ExamineeUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,7 +538,7 @@ public class ExamineeUI extends javax.swing.JFrame {
         }
         upcomingTest=1;
         int retStat;
-        ArrayList<Test> E;
+        ArrayList<Test> E,F;
         jPanel4.removeAll();
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
@@ -533,10 +552,12 @@ public class ExamineeUI extends javax.swing.JFrame {
         }
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
-        E = SER.UpcomingTestDetails();
+        F = SER.UpcomingTestDetails();
+        E = SER.OngoingTestDetails();
+        E.addAll(F);
         if(E.size()==0) {
             retStat = DB.disconnect();
-            javax.swing.JOptionPane.showMessageDialog(this,"No upcomming tests to show");
+            javax.swing.JOptionPane.showMessageDialog(this,"No upcomming or ongoing tests to show");
             return;
         }
         UpcomingTestUIExaminee U; 
@@ -838,7 +859,7 @@ public class ExamineeUI extends javax.swing.JFrame {
          JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
          jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
          jfc.setMultiSelectionEnabled(false);
-         jfc.showOpenDialog(null);
+         jfc.showOpenDialog(this);
          int ret;
          try {
              file = jfc.getSelectedFile();
@@ -870,38 +891,64 @@ public class ExamineeUI extends javax.swing.JFrame {
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
         // TODO add your handling code here:
         if(finishedTest!=0) {
-            return;
+            //return;
         }
         finishedTest=1;
         int retStat;
         ArrayList<Test> E;
         finishedtestpanel.removeAll();
+        //LoadingPanel Lp = new  LoadingPanel();
+        //System.out.println("Adding LP");
+        //finishedtestpanel.add(Lp);
+        SwingUtilities.invokeLater( 
+                      new Runnable(){
+                       public void run(){
+                        ftloading.setText("Connecting to Database....");
+                       }
+                      }
+                    );  
+        //ftloading.setText("Connecting to Database....");
+        ///*
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
         if(retStat == 1) {
+            //System.out.println("removing LP");
+            ftloading.setText("");
+            //finishedtestpanel.removeAll();
             javax.swing.JOptionPane.showMessageDialog(this,"Couldn't connect to DB");
             return;
         }
         else if(retStat == 2) {
+            //System.out.println("removing LP");
+            ftloading.setText("");
+            //finishedtestpanel.removeAll();
             javax.swing.JOptionPane.showMessageDialog(this,"No JDBC driver");
             return;
         }
+        ftloading.setText("Fetching Data....");
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
         E = SER.PreviousTestDetails();
         if(E.size()==0) {
             retStat = DB.disconnect();
+            //System.out.println("removing LP");
+            ftloading.setText("");
+            //finishedtestpanel.removeAll();
             javax.swing.JOptionPane.showMessageDialog(this,"No finished tests to show");
             return;
         }
         FinishedTestUI U; 
         SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormater = new SimpleDateFormat("hh:mm:ss a");
+        ftloading.setText("Done.");
+        //System.out.println("removing LP");
+        //finishedtestpanel.removeAll();
         for(int i=0;i<E.size();i++) {
             U = new FinishedTestUI(jTabbedPane1,this,E.get(i));
             finishedtestpanel.add(U);
         }
         retStat = DB.disconnect();
+        //*/
     }//GEN-LAST:event_jPanel2ComponentShown
 
     private void submissionpanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_submissionpanelComponentShown
@@ -914,7 +961,8 @@ public class ExamineeUI extends javax.swing.JFrame {
             jTabbedPane1.setEnabledAt(4,false);
             jTabbedPane1.setSelectedComponent(jTabbedPane1.getComponentAt(2));
             return;
-        } 
+        }
+        Testname.setText(currenttest.Testname);
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
         if(retStat == 1) {
@@ -1024,6 +1072,7 @@ public class ExamineeUI extends javax.swing.JFrame {
     private javax.swing.JButton changepassword;
     private javax.swing.JButton clear;
     private javax.swing.JButton exit;
+    private javax.swing.JLabel ftloading;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

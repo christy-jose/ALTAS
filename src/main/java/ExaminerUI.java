@@ -33,6 +33,7 @@ public class ExaminerUI extends javax.swing.JFrame {
     public ExaminerUI(String username,HomeWindow prev) {
         Uname = username;
         TestID = Long.toString(System.nanoTime());
+        pre = prev;
         initComponents();
     }
 
@@ -71,7 +72,12 @@ public class ExaminerUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane(jPanel6);
         jPanel4 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Test Name");
 
@@ -208,7 +214,9 @@ public class ExaminerUI extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane6.addTab("Upcoming Tests", jPanel2);
@@ -227,7 +235,9 @@ public class ExaminerUI extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane6.addTab("Previous Tests", jPanel3);
@@ -405,10 +415,22 @@ public class ExaminerUI extends javax.swing.JFrame {
         retStat = DB.disconnect();
     }//GEN-LAST:event_DisplayPreviousTest
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        closeWindow();
+        
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
-
+    private void closeWindow() {
+        this.setVisible(false);
+        if(pre!=null) {
+            pre.setVisible(true);
+        }
+        this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DurationHourField;
@@ -435,4 +457,5 @@ public class ExaminerUI extends javax.swing.JFrame {
     private javax.swing.JTextField ssecond;
     private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
+    private HomeWindow pre;
 }

@@ -184,7 +184,7 @@ public class UpcomingTestUIExaminee extends javax.swing.JPanel {
         serverDetails sd = new serverDetails();
         int r = sd.fetchDetails();
         if(r!=0) {
-            javax.swing.JOptionPane.showMessageDialog(this,"Error");
+            javax.swing.JOptionPane.showMessageDialog(tabpanel,"Error");
             return;
         }
         try {
@@ -211,11 +211,11 @@ public class UpcomingTestUIExaminee extends javax.swing.JPanel {
             }
         }
         catch (MalformedURLException urle) {
-            JOptionPane.showMessageDialog(null, "Cannot find judge server");
+            JOptionPane.showMessageDialog(tabpanel, "Cannot find judge server");
             return;
         }
         catch (IOException ioe) {
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(tabpanel, "Error");
             return;
         }
         System.out.println("Parsing server time");
@@ -225,18 +225,18 @@ public class UpcomingTestUIExaminee extends javax.swing.JPanel {
             temp = sdf.parse(response.toString());
         }
         catch (ParseException pe) {
-            JOptionPane.showMessageDialog(null, "Time error");
+            JOptionPane.showMessageDialog(tabpanel, "Time error");
             return;
         }
         System.out.println("Making server time timestamp");
         Timestamp servertime = new Timestamp(temp.getTime());
         System.out.println("Done");
         if(servertime.before(test.Starttime)) {
-            JOptionPane.showMessageDialog(null, "Test has not started yet");
+            JOptionPane.showMessageDialog(tabpanel, "Test has not started yet");
             return;
         }
         if(servertime.after(test.Endtime)) {
-            JOptionPane.showMessageDialog(null, "Test is over");
+            JOptionPane.showMessageDialog(tabpanel, "Test is over");
             return;
         }
         String s = C.start();
