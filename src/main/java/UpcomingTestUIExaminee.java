@@ -243,6 +243,7 @@ public class UpcomingTestUIExaminee extends javax.swing.JPanel {
         jButton1.setEnabled(false);
         jButton3.setEnabled(true);
         tabpanel.setEnabledAt(3, true);
+        tabpanel.setEnabledAt(4, true);
         tabpanel.setSelectedComponent(tabpanel.getComponentAt(3));
         tabpanel.setEnabledAt(1, false);
         tabpanel.setEnabledAt(2, false);

@@ -25,6 +25,7 @@ import java.util.*;
 import java.text.SimpleDateFormat; 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.ProgressMonitor;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
 public class ExamineeUI extends javax.swing.JFrame {
@@ -35,11 +36,11 @@ public class ExamineeUI extends javax.swing.JFrame {
 //<<<<<<< Updated upstream
     public ExamineeUI(String name) {
 //=======
-   //public ExamineeUI(HomeWindow p) {
+//    public ExamineeUI(HomeWindow p) {
 //>>>>>>> Stashed changes
         initComponents();
         user = new Examinee();
-//        this.prev=p;
+        //this.prev=p;
         this.user.username=name;
         this.user.name="";
         this.upcomingTest=0;
@@ -80,15 +81,16 @@ public class ExamineeUI extends javax.swing.JFrame {
         changepassword = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        ftloading = new javax.swing.JLabel();
         finishedtestpanel = new javax.swing.JPanel();
         finishedtestpanel.setLayout(new javax.swing.BoxLayout(finishedtestpanel,javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2 = new javax.swing.JScrollPane(finishedtestpanel);
+        P1 = new javax.swing.JProgressBar(0,100);
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4,javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1 = new javax.swing.JScrollPane(jPanel4);
         jLabel12 = new javax.swing.JLabel();
+        P2 = new javax.swing.JProgressBar(0,100);
         TestPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         testname = new javax.swing.JLabel();
@@ -104,12 +106,14 @@ public class ExamineeUI extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         clear = new javax.swing.JButton();
         exit = new javax.swing.JButton();
+        P3 = new javax.swing.JProgressBar(0,100);
         submissionpanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         Testname = new javax.swing.JLabel();
         subpanel = new javax.swing.JPanel();
         subpanel.setLayout(new javax.swing.BoxLayout(subpanel,javax.swing.BoxLayout.Y_AXIS));
         submissionspane = new javax.swing.JScrollPane(subpanel);
+        P4 = new javax.swing.JProgressBar(0,100);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Home");
@@ -235,7 +239,7 @@ public class ExamineeUI extends javax.swing.JFrame {
             .addGroup(ProfilePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(changepassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addContainerGap(512, Short.MAX_VALUE))
             .addGroup(ProfilePanelLayout.createSequentialGroup()
                 .addGroup(ProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProfilePanelLayout.createSequentialGroup()
@@ -249,7 +253,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                                 .addGroup(ProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                                 .addGroup(ProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
@@ -315,18 +319,18 @@ public class ExamineeUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                    .addComponent(ftloading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                    .addComponent(P1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ftloading, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addGap(4, 4, 4))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(P1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Finished Tests", jPanel2);
@@ -343,19 +347,22 @@ public class ExamineeUI extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addComponent(P2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(P2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -423,7 +430,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                         .addGroup(TestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(TestPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 90, Short.MAX_VALUE))
+                                .addGap(28, 120, Short.MAX_VALUE))
                             .addGroup(TestPanelLayout.createSequentialGroup()
                                 .addComponent(questionbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
@@ -438,13 +445,13 @@ public class ExamineeUI extends javax.swing.JFrame {
                                 .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(TestPanelLayout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(TestPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(testname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(testname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TestPanelLayout.createSequentialGroup()
+                        .addComponent(P3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         TestPanelLayout.setVerticalGroup(
@@ -469,7 +476,9 @@ public class ExamineeUI extends javax.swing.JFrame {
                     .addComponent(upload)
                     .addComponent(submit))
                 .addGap(18, 18, 18)
-                .addComponent(exit)
+                .addGroup(TestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exit)
+                    .addComponent(P3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6))
         );
 
@@ -496,7 +505,8 @@ public class ExamineeUI extends javax.swing.JFrame {
                     .addGroup(submissionpanelLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Testname, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)))
+                        .addComponent(Testname, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
+                    .addComponent(P4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         submissionpanelLayout.setVerticalGroup(
@@ -507,8 +517,10 @@ public class ExamineeUI extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(Testname, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submissionspane, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(submissionspane, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(P4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Submissions", submissionpanel);
@@ -518,10 +530,7 @@ public class ExamineeUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,18 +549,23 @@ public class ExamineeUI extends javax.swing.JFrame {
         int retStat;
         ArrayList<Test> E,F;
         jPanel4.removeAll();
+        P2.setValue(10);
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
         if(retStat == 1) {
+            P2.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"Couldn't connect to DB");
             return;
         }
         else if(retStat == 2) {
+            P2.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"No JDBC driver");
             return;
         }
+        P2.setValue(50);
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
+        P2.setValue(100);
         F = SER.UpcomingTestDetails();
         E = SER.OngoingTestDetails();
         E.addAll(F);
@@ -576,8 +590,9 @@ public class ExamineeUI extends javax.swing.JFrame {
        
     }//GEN-LAST:event_formWindowClosing
     private void closeWindow() {
-        this.dispose();
+        this.setVisible(false);
         new HomeWindow().setVisible(true);
+        this.dispose();
     }
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         closeWindow();
@@ -667,19 +682,24 @@ public class ExamineeUI extends javax.swing.JFrame {
         testname.setText(currenttest.Testname);
         ArrayList<Question> E;
         questionpanel.removeAll();
+        P3.setValue(10);
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
         if(retStat == 1) {
+            P3.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"Couldn't connect to DB");
             return;
         }
         else if(retStat == 2) {
+            P3.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"No JDBC driver");
             return;
         }
+        P3.setValue(50);
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
         E = SER.fetchQuestions(currenttest.Testid);
+        P3.setValue(100);
         if(E.size()==0) {
             retStat = DB.disconnect();
             javax.swing.JOptionPane.showMessageDialog(this,"No questions to show");
@@ -701,6 +721,7 @@ public class ExamineeUI extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
+        P3.setValue(0);
         if(testover) {
             JOptionPane.showMessageDialog(this, "Test is over");
             questionbox.setSelectedIndex(0);
@@ -708,9 +729,11 @@ public class ExamineeUI extends javax.swing.JFrame {
             upload.setEnabled(false);
             return;
         }
+        P3.setValue(10);
         String path =  file.getAbsolutePath();
         ConnectDB DB = new ConnectDB();
         DB.connect();
+        P3.setValue(20);
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
         submissions = SER.fetchSubmissionsCount(user.username, currenttest.Testid);
@@ -725,6 +748,7 @@ public class ExamineeUI extends javax.swing.JFrame {
         serverDetails sd = new serverDetails();
         int r = sd.fetchDetails();
         if(r!=0) {
+            P3.setValue(0);
             questionbox.setSelectedIndex(0);
             submit.setEnabled(false);
             upload.setEnabled(false);
@@ -749,18 +773,22 @@ public class ExamineeUI extends javax.swing.JFrame {
                 System.out.println(response.toString());
             }
             else {
+                P3.setValue(0);
                 JOptionPane.showMessageDialog(this, "Time not synced with judge server");
                 return;
             }
         }
         catch (MalformedURLException urle) {
+            P3.setValue(0);
             JOptionPane.showMessageDialog(this, "Cannot find judge server");
             return;
         }
         catch (IOException ioe) {
+            P3.setValue(0);
             JOptionPane.showMessageDialog(this, "Error");
             return;
         }
+        P3.setValue(30);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date temp = null;
         Timestamp servertime;
@@ -771,11 +799,13 @@ public class ExamineeUI extends javax.swing.JFrame {
             System.out.println("Submit time is = "+S.submittime.toString());
         }
         catch (ParseException pe) {
+            P3.setValue(0);
             JOptionPane.showMessageDialog(this, "Time error");
             return;
         }
        
         if(servertime.after(currenttest.Endtime)) {
+            P3.setValue(0);
             JOptionPane.showMessageDialog(this, "Test is over");
             testover=true;
             questionbox.setSelectedIndex(0);
@@ -788,7 +818,9 @@ public class ExamineeUI extends javax.swing.JFrame {
         try {
             AddSubmissionModule asm = new AddSubmissionModule(DB.getconn());
             int ret = asm.add(S);
+            P3.setValue(50);
             if(ret != 1) {
+                P3.setValue(0);
                 JOptionPane.showMessageDialog(this, "Error");
                 DB.disconnect();
                 questionbox.setSelectedIndex(0);
@@ -797,6 +829,7 @@ public class ExamineeUI extends javax.swing.JFrame {
                 return;
             }
             AddFileToDB addOut = new AddFileToDB(path,subid);
+            P3.setValue(80);
             String POST_URL = sd.url+"/Judge";
             String POST_PARAMS = "subid="+subid+"&testid="+currenttest.Testid+"&qid="+S.questionid;
             URL obj = new URL(POST_URL);
@@ -817,15 +850,18 @@ public class ExamineeUI extends javax.swing.JFrame {
 		}
 		in.close();
 		System.out.println(response.toString());
+                P3.setValue(100);
                 JOptionPane.showMessageDialog(this, response.toString());
             } 
             else 
             {
+                P3.setValue(0);
 		JOptionPane.showMessageDialog(this, "Something went wrong in the Judge Server");
                 
             }
         }
         catch (IOException ioe) {
+            P3.setValue(0);
             JOptionPane.showMessageDialog(this, "Error");
         }
         DB.disconnect();
@@ -888,62 +924,41 @@ public class ExamineeUI extends javax.swing.JFrame {
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
         // TODO add your handling code here:
         if(finishedTest!=0) {
-            //return;
+            return;
         }
         finishedTest=1;
         int retStat;
         ArrayList<Test> E;
         finishedtestpanel.removeAll();
-        //LoadingPanel Lp = new  LoadingPanel();
-        //System.out.println("Adding LP");
-        //finishedtestpanel.add(Lp);
-        SwingUtilities.invokeAndWait( 
-            new Runnable(){
-                try {   
-                    public void run(){
-                        ftloading.setText("Connecting to Database....");
-                    }
-                }
-                catch (Exception e) {
-                        
-                }
-            });  
-        //ftloading.setText("Connecting to Database....");
+        P1.setValue(10);
         ///*
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
         if(retStat == 1) {
-            //System.out.println("removing LP");
-            ftloading.setText("");
-            //finishedtestpanel.removeAll();
+            
             javax.swing.JOptionPane.showMessageDialog(this,"Couldn't connect to DB");
             return;
         }
         else if(retStat == 2) {
-            //System.out.println("removing LP");
-            ftloading.setText("");
-            //finishedtestpanel.removeAll();
+            
             javax.swing.JOptionPane.showMessageDialog(this,"No JDBC driver");
             return;
         }
-        ftloading.setText("Fetching Data....");
+         P1.setValue(50);
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
         E = SER.PreviousTestDetails();
+        P1.setValue(100);
         if(E.size()==0) {
             retStat = DB.disconnect();
-            //System.out.println("removing LP");
-            ftloading.setText("");
-            //finishedtestpanel.removeAll();
+            
             javax.swing.JOptionPane.showMessageDialog(this,"No finished tests to show");
             return;
         }
         FinishedTestUI U; 
         SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormater = new SimpleDateFormat("hh:mm:ss a");
-        ftloading.setText("Done.");
-        //System.out.println("removing LP");
-        //finishedtestpanel.removeAll();
+       
         for(int i=0;i<E.size();i++) {
             U = new FinishedTestUI(jTabbedPane1,this,E.get(i));
             finishedtestpanel.add(U);
@@ -954,6 +969,7 @@ public class ExamineeUI extends javax.swing.JFrame {
 
     private void submissionpanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_submissionpanelComponentShown
         // TODO add your handling code here:
+        P4.setValue(0);
         int retStat;
         ArrayList<Submission> E;
         subpanel.removeAll();
@@ -964,21 +980,27 @@ public class ExamineeUI extends javax.swing.JFrame {
             return;
         }
         Testname.setText(currenttest.Testname);
+        P4.setValue(10);
         ConnectDB DB = new ConnectDB();
         retStat = DB.connect();
         if(retStat == 1) {
+            P4.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"Couldn't connect to DB");
             return;
         }
         else if(retStat == 2) {
+            P4.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"No JDBC driver");
             return;
         }
+        P4.setValue(50);
         SearchModule SER = new SearchModule();
         SER.setconn(DB.getconn());
         E = SER.fetchSubmissions(user.username, currenttest.Testid);
+        P4.setValue(100);
         if(E.size()==0) {
             retStat = DB.disconnect();
+            P4.setValue(0);
             javax.swing.JOptionPane.showMessageDialog(this,"No submissions to show");
             return;
         }
@@ -1064,6 +1086,10 @@ public class ExamineeUI extends javax.swing.JFrame {
     private javax.swing.JButton Cancel;
     private javax.swing.JLabel Class;
     private javax.swing.JButton Logout;
+    private javax.swing.JProgressBar P1;
+    private javax.swing.JProgressBar P2;
+    private javax.swing.JProgressBar P3;
+    private javax.swing.JProgressBar P4;
     private javax.swing.JPanel ProfilePanel;
     private javax.swing.JPanel questionpanel;
     private javax.swing.JScrollPane QuestionsPane;
@@ -1073,7 +1099,6 @@ public class ExamineeUI extends javax.swing.JFrame {
     private javax.swing.JButton changepassword;
     private javax.swing.JButton clear;
     private javax.swing.JButton exit;
-    private javax.swing.JLabel ftloading;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1110,7 +1135,7 @@ public class ExamineeUI extends javax.swing.JFrame {
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 //<<<<<<< Updated upstream
-//    private HomeWindow prev;
+    private HomeWindow prev;
     private Examinee user;
     private Test currenttest;
     private int submissions;

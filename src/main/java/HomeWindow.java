@@ -2,6 +2,7 @@
 import java.awt.Component;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import javax.swing.ProgressMonitor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -44,6 +45,7 @@ public class HomeWindow extends javax.swing.JFrame {
         SPasswordField = new javax.swing.JPasswordField();
         Slogin = new javax.swing.JButton();
         SClear = new javax.swing.JButton();
+        P1 = new javax.swing.JProgressBar(0,100);
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -51,6 +53,7 @@ public class HomeWindow extends javax.swing.JFrame {
         FPasswordField = new javax.swing.JPasswordField();
         FLogin = new javax.swing.JButton();
         FClear = new javax.swing.JButton();
+        P2 = new javax.swing.JProgressBar(0,100);
         jPanel3 = new javax.swing.JPanel();
         APasswordField = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
@@ -58,6 +61,7 @@ public class HomeWindow extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         AClear = new javax.swing.JButton();
         Alogin = new javax.swing.JButton();
+        P3 = new javax.swing.JProgressBar(0,100);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -93,6 +97,12 @@ public class HomeWindow extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(205, Short.MAX_VALUE)
+                .addComponent(SClear)
+                .addGap(129, 129, 129)
+                .addComponent(Slogin)
+                .addGap(253, 253, 253))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,13 +112,11 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(SUsernameField))
-                .addContainerGap(217, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SClear)
-                .addGap(129, 129, 129)
-                .addComponent(Slogin)
-                .addGap(253, 253, 253))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(P1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +133,9 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Slogin)
                     .addComponent(SClear))
-                .addGap(60, 60, 60))
+                .addGap(18, 18, 18)
+                .addComponent(P1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         jTabbedPane1.addTab("Student Login", jPanel1);
@@ -161,20 +171,24 @@ public class HomeWindow extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(69, 69, 69)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FUsernameField)
-                            .addComponent(FPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(FClear)
-                        .addGap(86, 86, 86)
-                        .addComponent(FLogin)))
-                .addContainerGap(222, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(69, 69, 69)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(FUsernameField)
+                                    .addComponent(FPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(241, 241, 241)
+                                .addComponent(FClear)
+                                .addGap(86, 86, 86)
+                                .addComponent(FLogin)))
+                        .addGap(0, 210, Short.MAX_VALUE))
+                    .addComponent(P2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +205,9 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FLogin)
                     .addComponent(FClear))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(P2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Faculty Login", jPanel2);
@@ -220,6 +236,12 @@ public class HomeWindow extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(205, Short.MAX_VALUE)
+                .addComponent(AClear)
+                .addGap(129, 129, 129)
+                .addComponent(Alogin)
+                .addGap(253, 253, 253))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,13 +251,11 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(APasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(AUsernameField))
-                .addContainerGap(217, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AClear)
-                .addGap(129, 129, 129)
-                .addComponent(Alogin)
-                .addGap(253, 253, 253))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(P3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +272,9 @@ public class HomeWindow extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Alogin)
                     .addComponent(AClear))
-                .addGap(60, 60, 60))
+                .addGap(28, 28, 28)
+                .addComponent(P3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Admin Login", jPanel3);
@@ -277,30 +299,37 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void SloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SloginActionPerformed
         // TODO add your handling code here:
+        //ProgressMonitor P = new ProgressMonitor(this,"Authenticating","Connecting to Database...",0,100);
         String usr = SUsernameField.getText();
         String pwd = SPasswordField.getText();
         try {
+            P1.setValue(10);
             //connect to database           
             Connection conn = null;
             ConnectDB DB=new ConnectDB();
             DB.connect();
+            P1.setValue(50);
+            //P.setNote("verifying");
             conn = DB.getconn();
             SearchModule s= new SearchModule();
             s.setconn(conn);
             int res = s.Login(usr,pwd,1);
             DB.disconnect();
+            P1.setValue(100);
             System.out.println(res);
             if(res<1) {
-                
+                //P.close();
                 IncorrectCredentialException cred= new IncorrectCredentialException("Incorrect Username/Password");
                 throw cred;
             }
         } catch (IncorrectCredentialException er) {
+            //P.close();
             Component frame = null;
             JOptionPane.showMessageDialog(frame, "Incorrect Username/Password");
             //Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
+        //P.close();
         //System.out.println("I am being executed idk why!");
         this.dispose();
         new ExamineeUI(usr).setVisible(true);
@@ -308,27 +337,32 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void FLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FLoginActionPerformed
         // TODO add your handling code here:
+        P2.setValue(0);
         String usr = FUsernameField.getText();
         String pwd = FPasswordField.getText();
         try {
             //connect to database           
             Connection conn = null;
+            P2.setValue(10);
             ConnectDB DB=new ConnectDB();
             DB.connect();
             conn = DB.getconn();
+            P2.setValue(50);
             SearchModule s= new SearchModule();
             s.setconn(conn);
             int res = s.Login(usr,pwd,0);
+            P2.setValue(100);
             DB.disconnect();
             System.out.println(res);
             
             if(res<1) {
-                
+                P2.setValue(0); 
                 IncorrectCredentialException cred= new IncorrectCredentialException("Incorrect Username/Password");
                 throw cred;
             }
         } catch (IncorrectCredentialException er) {
             Component frame = null;
+            P2.setValue(0);
             JOptionPane.showMessageDialog(frame, "Incorrect Username/Password");
             //Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
             return;
@@ -367,14 +401,18 @@ public class HomeWindow extends javax.swing.JFrame {
 
     private void AloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AloginActionPerformed
         // TODO add your handling code here:
+        P3.setValue(0);
         String usr=AUsernameField.getText();
         String pwd=APasswordField.getText();
+        P3.setValue(10);
         if("Admin".equals(usr) && "admin123".equals(pwd))
         {
+            P3.setValue(100);
             this.dispose();
             new AdminUI().setVisible(true);
         }
         else {
+            P3.setValue(0);
             JOptionPane.showMessageDialog(this, "Incorrect Username/Password");
         }
     }//GEN-LAST:event_AloginActionPerformed
@@ -423,6 +461,9 @@ public class HomeWindow extends javax.swing.JFrame {
     private javax.swing.JButton FLogin;
     private javax.swing.JPasswordField FPasswordField;
     private javax.swing.JTextField FUsernameField;
+    private javax.swing.JProgressBar P1;
+    private javax.swing.JProgressBar P2;
+    private javax.swing.JProgressBar P3;
     private javax.swing.JButton SClear;
     private javax.swing.JPasswordField SPasswordField;
     private javax.swing.JTextField SUsernameField;
